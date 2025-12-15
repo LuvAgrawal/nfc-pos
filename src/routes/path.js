@@ -1,4 +1,4 @@
 export const path = {
   HOME: "/",
-  RECHARGE: "/recharge",
+  CUSTOMER: "/user/:id",
 };
