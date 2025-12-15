@@ -1,5 +1,5 @@
 import { FiArrowLeft } from "react-icons/fi"
-import { Outlet } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 
 const DashboardLayout = () => {
     const path = window.location.pathname
@@ -9,7 +9,9 @@ const DashboardLayout = () => {
                 <div className="flex items-center gap-3">
                     {path != "/" &&
                         <button className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors">
-                            <FiArrowLeft className="size-5 font-bold text-gray-700" />
+                            <Link to={"/"}>
+                                <FiArrowLeft className="size-5 font-bold text-gray-700" />
+                            </Link>
                         </button>}
                     <h1 className="text-gray-900 font-medium text-2xl">
                         {path === '/' && "Search Customer"}

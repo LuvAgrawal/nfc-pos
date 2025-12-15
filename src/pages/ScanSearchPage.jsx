@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { FiAlertCircle } from 'react-icons/fi';
 import { LuNfc } from 'react-icons/lu';
+import { useNavigate } from 'react-router-dom';
 
 const ScanSearchPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [nfcState, setNFCState] = useState('normal');
+
+    const navigate = useNavigate()
 
     const handleNFCScan = () => {
         setNFCState('scanning');
@@ -14,6 +17,7 @@ const ScanSearchPage = () => {
             const success = Math.random() > 0.3;
             if (success) {
                 setNFCState('normal');
+                navigate("/user/test")
             } else {
                 setNFCState('invalid');
                 setTimeout(() => setNFCState('normal'), 2000);
@@ -66,17 +70,15 @@ const ScanSearchPage = () => {
 
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="relative">
-                <div className="relative">
-                    <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
-                    <input
-                        type="text"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        placeholder="Search by name, phone, or card number"
-                        className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-lg
+                <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-gray-400" />
+                <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search by name, phone, or card number"
+                    className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-lg
                                            focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                </div>
+                />
             </form>
         </div>
     );
